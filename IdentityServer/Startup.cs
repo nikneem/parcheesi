@@ -6,6 +6,7 @@ using HexMaster.Parcheesi.IdentityServer.Certificates;
 using HexMaster.Parcheesi.IdentityServer.Data;
 using HexMaster.Parcheesi.IdentityServer.Models;
 using HexMaster.Parcheesi.IdentityServer.Services;
+using IdentityServer4;
 using IdentityServer4.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.DataProtection;
@@ -139,6 +140,15 @@ namespace HexMaster.Parcheesi.IdentityServer
                                     });
                 })
                 .Services.AddTransient<IProfileService, ProfileService>();
+
+            services.AddAuthentication()
+                .AddGoogle("Google", options =>
+                {
+                    options.SignInScheme = IdentityServerConstants.ExternalCookieAuthenticationScheme;
+
+                    options.ClientId = "787585287855-h8gaab0sb80hs9e39e9kiq536h73p98c.apps.googleusercontent.com";
+                    options.ClientSecret = "HbZR4pTWYVVY5nNyTIT63w5u";
+                });
 
             var container = new ContainerBuilder();
             container.Populate(services);

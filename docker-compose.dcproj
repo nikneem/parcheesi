@@ -5,7 +5,7 @@
     <DockerTargetOS>Linux</DockerTargetOS>
     <ProjectGuid>2d4bd1aa-a7c4-40c2-91cb-775c860d5c00</ProjectGuid>
     <DockerLaunchAction>LaunchBrowser</DockerLaunchAction>
-    <DockerServiceUrl>{Scheme}://localhost:{ServicePort}/api/values</DockerServiceUrl>
+    <DockerServiceUrl>{Scheme}://localhost:44300/api/values</DockerServiceUrl>
     <DockerServiceName>gatewayapi</DockerServiceName>
   </PropertyGroup>
   <ItemGroup>
