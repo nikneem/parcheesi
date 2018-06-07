@@ -1,0 +1,64 @@
+version: '3.4'
+
+services:
+  gatewayapi:
+    image: parcheesi/gatewayapi
+    build:
+      context: .
+      dockerfile: GatewayApi/Dockerfile
+    depends_on:
+      - identityserver
+      - networkservice
+      - gameservice
+      - contentservice
+      - chatservice
+
+  identityserver:
+    image: parcheesi/identityserver
+    build:
+      context: .
+      dockerfile: IdentityServer/Dockerfile
+    depends_on:
+      - sql
+
+
+  networkservice:
+    image: parcheesi/networkservice
+    build:
+      context: .
+      dockerfile: NetworkService/Dockerfile
+    depends_on:
+      - mongo
+
+
+  gameservice:
+    image: parcheesi/gameservice
+    build:
+      context: .
+      dockerfile: GameService/Dockerfile
+    depends_on:
+      - mongo
+
+
+  contentservice:
+    image: parcheesi/contentservice
+    build:
+      context: .
+      dockerfile: ContentService/Dockerfile
+    depends_on:
+      - mongo
+
+
+  chatservice:
+    image: parcheesi/chatservice
+    build:
+      context: .
+      dockerfile: ChatService/Dockerfile
+    depends_on:
+      - mongo
+
+  mongo:
+    image: mongo
+
+  sql:
+    image: microsoft/mssql-server-linux:2017-CU7
