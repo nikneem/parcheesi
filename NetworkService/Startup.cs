@@ -1,4 +1,8 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using HexMaster.Parcheesi.NetworkService.Contracts.Repositories;
+using HexMaster.Parcheesi.NetworkService.Contracts.Services;
+using HexMaster.Parcheesi.NetworkService.Repositories;
+using HexMaster.Parcheesi.NetworkService.Services;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -18,6 +22,10 @@ namespace HexMaster.Parcheesi.NetworkService
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
+            services.AddTransient<IFriendsService, FriendsService>();
+            services.AddTransient<IFriendsRepository, FriendsRepository>();
+
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 
