@@ -11,12 +11,10 @@ namespace HexMaster.Parcheesi.IdentityServer.Configuration
         {
             return new List<ApiResource>
             {
-                new ApiResource("chat", "Chat Service"),
-                new ApiResource("game", "Game Service"),
-                new ApiResource("network", "Network Service"),
-                new ApiResource("chat.signalrhub", "Chat Signalr Hub"),
-                new ApiResource("game.signalrhub", "Game Signalr Hub"),
-                new ApiResource("network.signalrhub", "Network Signalr Hub")
+                new ApiResource("api", "Demo API")
+                {
+                    ApiSecrets = { new Secret("secret".Sha256()) }
+                }
             };
         }
 
@@ -27,9 +25,11 @@ namespace HexMaster.Parcheesi.IdentityServer.Configuration
             return new List<IdentityResource>
             {
                 new IdentityResources.OpenId(),
+                new IdentityResources.Email(),
                 new IdentityResources.Profile()
             };
         }
+
 
         // client want to access resources (aka scopes)
         public static IEnumerable<Client> GetClients(Dictionary<string,string> clientsUrl)
@@ -70,6 +70,24 @@ namespace HexMaster.Parcheesi.IdentityServer.Configuration
             return new List<Client>
             {
                 // native clients
+
+                new Client
+                {
+                    ClientId = "spa",
+                    ClientSecrets = { new Secret("spa".Sha256()) },
+                    ClientName = "Front-end project",
+                    AllowAccessTokensViaBrowser = true,
+                    AccessTokenType = AccessTokenType.Jwt,
+                    RedirectUris = { "https://notused" },
+                    PostLogoutRedirectUris = { "https://notused" },
+                    RefreshTokenUsage = TokenUsage.OneTimeOnly,
+                    RefreshTokenExpiration = TokenExpiration.Absolute,
+                    RequireClientSecret = true,
+
+                    AllowedGrantTypes = GrantTypes.ResourceOwnerPasswordAndClientCredentials,
+                    AllowedScopes = { "openid", "profile", "email", "api" },
+                },
+
                 new Client
                 {
                     ClientId = "native.hybrid",

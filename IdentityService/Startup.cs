@@ -24,7 +24,7 @@ namespace HexMaster.Parcheesi.IdentityService
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
-        public void ConfigureServices(IServiceCollection services)
+        public async void ConfigureServices(IServiceCollection services)
         {
 
             services.AddScoped<IUsersRepository, UsersRepository>();
@@ -36,11 +36,17 @@ namespace HexMaster.Parcheesi.IdentityService
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
+            var connectionString = Configuration.GetSection("MongoConnection:ConnectionString").Value;
+            var database = Configuration.GetSection("MongoConnection:Database").Value;
             services.Configure<MongoDbSettings>(options =>
             {
-                options.ConnectionString = Configuration.GetSection("MongoConnection:ConnectionString").Value;
-                options.Database = Configuration.GetSection("MongoConnection:Database").Value;
+                options.ConnectionString = connectionString;
+                options.Database = database;
             });
+
+            
+
+            await new RepositorySeeder(connectionString, database).Seed();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
