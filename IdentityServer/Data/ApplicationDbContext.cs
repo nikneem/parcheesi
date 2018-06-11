@@ -1,4 +1,5 @@
-﻿using HexMaster.Parcheesi.IdentityServer.Models;
+﻿using HexMaster.Parcheesi.IdentityServer.Data.Entities;
+using HexMaster.Parcheesi.IdentityServer.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
@@ -18,5 +19,9 @@ namespace HexMaster.Parcheesi.IdentityServer.Data
             // For example, you can rename the ASP.NET Identity table names and more.
             // Add your customizations after calling base.OnModelCreating(builder);
         }
+
+
+        public DbSet<UserEntity> Users { get; set; }
+
     }
 }
