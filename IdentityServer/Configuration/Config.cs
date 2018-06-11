@@ -39,9 +39,10 @@ namespace HexMaster.Parcheesi.IdentityServer.Configuration
                 // JavaScript Client
                 new Client
                 {
-                    ClientId = "js",
+                    ClientId = "spa-pwa",
                     ClientName = "Parcheesi OpenId SPA Client",
-                    AllowedGrantTypes = GrantTypes.Implicit,
+                    AllowedGrantTypes = GrantTypes.ClientCredentials,
+                    ClientSecrets = new List<Secret> { new Secret("superSecretPassword".Sha256()) },  
                     AllowAccessTokensViaBrowser = true,
                     RedirectUris =           { $"{clientsUrl["Spa"]}/" },
                     RequireConsent = false,
