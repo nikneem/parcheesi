@@ -17,20 +17,20 @@ services:
       context: .
       dockerfile: GatewayApi/Dockerfile
     depends_on:
-      - identityserver
+      - identityservice
       - networkservice
       - gameservice
       - contentservice
       - chatservice
 
-  identityserver:
-    image: parcheesi/identityserver
+
+  identityservice:
+    image: parcheesi/identityservice
     build:
       context: .
-      dockerfile: IdentityServer/Dockerfile
+      dockerfile: IdentityService/Dockerfile
     depends_on:
-      - sql
-
+      - mongo
 
   networkservice:
     image: parcheesi/networkservice
@@ -69,15 +69,10 @@ services:
 
   mongo:
     image: mongo
-    depends_on:
-      - rabbitmq
+#    depends_on:
+#      - rabbitmq
 
-  sql:
-    image: microsoft/mssql-server-linux:2017-CU7
-    depends_on:
-      - rabbitmq
-
-  rabbitmq:
-    image: rabbitmq:3
+#  rabbitmq:
+#    image: rabbitmq
 
 

@@ -8,9 +8,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Infrastructure\**" />
     <Compile Remove="wwwroot\**" />
+    <Content Remove="Infrastructure\**" />
     <Content Remove="wwwroot\**" />
+    <EmbeddedResource Remove="Infrastructure\**" />
     <EmbeddedResource Remove="wwwroot\**" />
+    <None Remove="Infrastructure\**" />
     <None Remove="wwwroot\**" />
   </ItemGroup>
 
@@ -23,11 +27,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Infrastructure\" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\..\Common\Common.csproj" />
+    <ProjectReference Include="..\Common\Common.csproj" />
   </ItemGroup>
 
 </Project>

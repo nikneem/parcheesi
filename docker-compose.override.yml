@@ -24,11 +24,11 @@ services:
       - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
       - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
 
-  identityserver:
+  identityservice:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_URLS=https://+:443;http://+:80
-      - ASPNETCORE_HTTPS_PORT=44348
+      - ASPNETCORE_HTTPS_PORT=44391
     ports:
       - "64901:80"
       - "44301:443"
@@ -85,17 +85,16 @@ services:
       - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
 
   mongo:
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=patsjiesie
+      - MONGO_INITDB_ROOT_PASSWORD=secretPatsjword
+      - MONGO_INITDB_DATABASE=Parcheesi
     ports:
       - "27017:27017"
 
-  sql:
-    environment:
-      - SA_PASSWORD=Pass@word
-      - ACCEPT_EULA=Y
-    ports:
-      - "5433:1433"    # Important: In a production environment your should remove the external port
+#  rabbitmq:
+#    ports:
+#      - "15672:15672"  # Important: In a production environment your should remove the external port
+#      - "5672:5672"    # Important: In a production environment your should remove the external port
 
-  rabbitmq:
-    ports:
-      - "15672:15672"  # Important: In a production environment your should remove the external port
-      - "5672:5672"    # Important: In a production environment your should remove the external port
+
