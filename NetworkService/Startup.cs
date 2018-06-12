@@ -1,7 +1,9 @@
-﻿using HexMaster.Parcheesi.NetworkService.Contracts.Repositories;
+﻿using System;
+using HexMaster.Parcheesi.NetworkService.Contracts.Repositories;
 using HexMaster.Parcheesi.NetworkService.Contracts.Services;
 using HexMaster.Parcheesi.NetworkService.Repositories;
 using HexMaster.Parcheesi.NetworkService.Services;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -27,6 +29,13 @@ namespace HexMaster.Parcheesi.NetworkService
             services.AddTransient<IFriendsRepository, FriendsRepository>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                .AddJwtBearer(options =>
+                {
+                    options.Authority = "https://identityservice";
+                    options.Audience = "network-service";
+                });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -42,6 +51,7 @@ namespace HexMaster.Parcheesi.NetworkService
             }
 
             app.UseHttpsRedirection();
+            app.UseAuthentication();
             app.UseMvc();
         }
     }

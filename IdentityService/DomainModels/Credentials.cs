@@ -1,13 +1,13 @@
 ﻿using System;
 using HexMaster.Parcheesi.Common.Base;
+using HexMaster.Parcheesi.Common.ValueObjects;
 
 namespace HexMaster.Parcheesi.IdentityService.DomainModels
 {
     public class Credentials : DomainModelBase<Guid>
     {
         public string Username { get; set; }
-        public string Password { get; set; }
-        public string Secret { get; set; }
+        public Password Password { get; set; }
 
 
         public Credentials(Guid id, 
@@ -16,8 +16,7 @@ namespace HexMaster.Parcheesi.IdentityService.DomainModels
             string secret) : base(id)
         {
             Username = username;
-            Password = password;
-            Secret = secret;
+            Password = new Password(password, secret);
         }
     }
 }
