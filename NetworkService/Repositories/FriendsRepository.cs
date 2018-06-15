@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using HexMaster.Parcheesi.Common.Configuration;
 using HexMaster.Parcheesi.Common.Infrastructure;
 using HexMaster.Parcheesi.NetworkService.Contracts.Repositories;
 using HexMaster.Parcheesi.NetworkService.DomainModels;
 using HexMaster.Parcheesi.NetworkService.Entities;
+using Microsoft.Extensions.Options;
 using MongoDB.Bson;
 using MongoDB.Driver;
 
@@ -24,8 +26,15 @@ namespace HexMaster.Parcheesi.NetworkService.Repositories
 
             var skip = page * pageSize;
 
+            var builder = Builders<FriendEntity>.Filter;
+            var filter = builder.And(builder.Eq(ent => ent.UserId, userId));
+            if (!string.IsNullOrWhiteSpace(q))
+            {
+                filter = filter & builder.And(builder.Regex(x => x.Name, q));
+            }
+
             var result = await _collection
-                .Find(doc => doc.UserId == userId && (string.IsNullOrEmpty(q) || doc.Name.Contains(q)))
+                .Find(filter)
                 .SortBy(doc => doc.Name)
                 .Skip(skip)
                 .Limit(pageSize)
@@ -70,9 +79,9 @@ namespace HexMaster.Parcheesi.NetworkService.Repositories
                 ent.DeniedOn);
         }
 
-        public FriendsRepository(IMongoClient client)
+        public FriendsRepository(IMongoClient client, IOptions<MongoDbSettings> settings)
         {
-            var database = client.GetDatabase("ParcheesiNetwork");
+            var database = client.GetDatabase(settings.Value.Database);
             _collection = database.GetCollection<FriendEntity>(CollectionName);
         }
 

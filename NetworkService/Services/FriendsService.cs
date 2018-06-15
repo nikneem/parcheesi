@@ -13,7 +13,6 @@ namespace HexMaster.Parcheesi.NetworkService.Services
 {
     public class FriendsService : IFriendsService
     {
-        private readonly IUserContext _userContext;
         private readonly IFriendsRepository _friendsRepository;
 
         public async Task<ICollection<FriendDto>> Get(
@@ -21,7 +20,7 @@ namespace HexMaster.Parcheesi.NetworkService.Services
             int page = 0,
             int pageSize = Constants.default_page_size)
         {
-            var response = await _friendsRepository.Get(_userContext.UserId, q, page, pageSize);
+            var response = await _friendsRepository.Get(Guid.Parse("00000000-0000-0000-0001-000000000000"), q, page, pageSize);
             return response.Select(model => new FriendDto
             {
                 Id = model.Id,
@@ -33,7 +32,7 @@ namespace HexMaster.Parcheesi.NetworkService.Services
 
         public async Task<FriendDto> Create(FriendInvitationDto dto)
         {
-            var friend = new Friend(_userContext.UserId, dto.FriendId, dto.Name);
+            var friend = new Friend(Guid.Parse("00000000-0000-0000-0001-000000000000"), dto.FriendId, dto.Name);
             var model = await _friendsRepository.Create(friend);
             return new FriendDto
             {
@@ -46,10 +45,8 @@ namespace HexMaster.Parcheesi.NetworkService.Services
 
 
 
-        public FriendsService(IUserContext userContext,
-            IFriendsRepository friendsRepository)
+        public FriendsService(IFriendsRepository friendsRepository)
         {
-            _userContext = userContext;
             _friendsRepository = friendsRepository;
         }
 

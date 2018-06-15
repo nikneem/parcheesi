@@ -6,6 +6,7 @@ using HexMaster.BuildingBlocks.EventBus;
 using HexMaster.BuildingBlocks.EventBus.Abstractions;
 using HexMaster.BuildingBlocks.EventBus.RabbitMq;
 using HexMaster.BuildingBlocks.EventBus.ServiceBus;
+using HexMaster.Parcheesi.Common.Configuration;
 using HexMaster.Parcheesi.NetworkService.Contracts.Repositories;
 using HexMaster.Parcheesi.NetworkService.Contracts.Services;
 using HexMaster.Parcheesi.NetworkService.Repositories;
@@ -19,6 +20,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using MongoDB.Driver;
 using RabbitMQ.Client;
 
 namespace HexMaster.Parcheesi.NetworkService
@@ -36,11 +38,14 @@ namespace HexMaster.Parcheesi.NetworkService
         public IServiceProvider ConfigureServices(IServiceCollection services)
         {
 
+
+            services.Configure<MongoDbSettings>(Configuration.GetSection("MongoConnection"));
             services.Configure<ServicesSettings>(Configuration);            
 
 
             services.AddTransient<IFriendsService, FriendsService>();
             services.AddTransient<IFriendsRepository, FriendsRepository>();
+            services.AddTransient<IMongoClient, MongoDataContext>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             ConfigureAuthService(services);

@@ -1,12 +1,14 @@
 ﻿using System.Threading.Tasks;
 using HexMaster.Parcheesi.NetworkService.Contracts.Services;
 using HexMaster.Parcheesi.NetworkService.DataTransferObjects;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace HexMaster.Parcheesi.NetworkService.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class FriendsController : ControllerBase
     {
         private readonly IFriendsService _friendsService;

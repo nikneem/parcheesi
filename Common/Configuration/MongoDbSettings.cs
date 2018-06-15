@@ -1,4 +1,4 @@
-﻿namespace HexMaster.Parcheesi.IdentityService.Configuration
+﻿namespace HexMaster.Parcheesi.Common.Configuration
 {
     public class MongoDbSettings
     {

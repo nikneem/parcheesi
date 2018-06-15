@@ -20,6 +20,8 @@ namespace HexMaster.BuildingBlocks.EventBus.RabbitMq
         IConnection _connection;
         bool _disposed;
 
+        public bool IsConnected => _connection != null && _connection.IsOpen && !_disposed;
+
         object sync_root = new object();
 
         public DefaultRabbitMQPersistentConnection(IConnectionFactory connectionFactory, ILogger<DefaultRabbitMQPersistentConnection> logger, int retryCount = 5)
@@ -29,13 +31,6 @@ namespace HexMaster.BuildingBlocks.EventBus.RabbitMq
             _retryCount = retryCount;
         }
 
-        public bool IsConnected
-        {
-            get
-            {
-                return _connection != null && _connection.IsOpen && !_disposed;
-            }
-        }
 
         public IModel CreateModel()
         {

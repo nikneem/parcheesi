@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Common.ExtensionMethods;
+using HexMaster.Parcheesi.Common.Configuration;
 using HexMaster.Parcheesi.IdentityService.Configuration;
 using HexMaster.Parcheesi.IdentityService.Contracts.Repositories;
 using HexMaster.Parcheesi.IdentityService.Data.Entities;

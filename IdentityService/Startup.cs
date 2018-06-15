@@ -1,4 +1,5 @@
 ﻿using System;
+using HexMaster.Parcheesi.Common.Configuration;
 using HexMaster.Parcheesi.IdentityService.Certificates;
 using HexMaster.Parcheesi.IdentityService.Configuration;
 using HexMaster.Parcheesi.IdentityService.Contracts.Repositories;
