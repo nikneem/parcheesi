@@ -36,6 +36,9 @@ namespace HexMaster.Parcheesi.NetworkService
         public IServiceProvider ConfigureServices(IServiceCollection services)
         {
 
+            services.Configure<ServicesSettings>(Configuration);            
+
+
             services.AddTransient<IFriendsService, FriendsService>();
             services.AddTransient<IFriendsRepository, FriendsRepository>();
 

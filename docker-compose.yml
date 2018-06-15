@@ -73,6 +73,6 @@ services:
       - rabbitmq
 
   rabbitmq:
-    image: rabbitmq
+    image: rabbitmq:3
 
 

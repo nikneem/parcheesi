@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.IO;
 using System.Net.Sockets;
 using Microsoft.Extensions.Logging;
@@ -78,8 +79,8 @@ namespace HexMaster.BuildingBlocks.EventBus.RabbitMq
 
                 policy.Execute(() =>
                 {
-                    _connection = _connectionFactory
-                          .CreateConnection();
+                    Debug.WriteLine($"Connecting RabbitMQ to {_connectionFactory.Uri}");
+                    _connection = _connectionFactory.CreateConnection();
                 });
 
                 if (IsConnected)
