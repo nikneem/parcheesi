@@ -14,7 +14,7 @@ namespace HexMaster.Parcheesi.IdentityService.Controllers
         [HttpPost]
         public async Task<IActionResult> Register([FromBody] RegistrationRequestDto dto)
         {
-
+            return null;
         }
     }
 }

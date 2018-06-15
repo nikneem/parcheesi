@@ -69,10 +69,10 @@ services:
 
   mongo:
     image: mongo
-#    depends_on:
-#      - rabbitmq
+    depends_on:
+      - rabbitmq
 
-#  rabbitmq:
-#    image: rabbitmq
+  rabbitmq:
+    image: rabbitmq
 
 

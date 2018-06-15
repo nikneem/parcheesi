@@ -1,4 +1,4 @@
-﻿using HexMaster.Parcheesi.IdentityServer.Configuration;
+﻿using System;
 using HexMaster.Parcheesi.IdentityService.Certificates;
 using HexMaster.Parcheesi.IdentityService.Configuration;
 using HexMaster.Parcheesi.IdentityService.Contracts.Repositories;
@@ -26,7 +26,6 @@ namespace HexMaster.Parcheesi.IdentityService
         // This method gets called by the runtime. Use this method to add services to the container.
         public async void ConfigureServices(IServiceCollection services)
         {
-
             services.AddScoped<IUsersRepository, UsersRepository>();
 
             services.AddTransient<IResourceOwnerPasswordValidator, PasswordValidationService>();
