@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AlertComponent } from '../components/alert/alert.component';
 
 @Component({
   selector: 'app-home',
@@ -7,9 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  constructor(private alert: AlertComponent) { }
 
   ngOnInit() {
+    setTimeout(() =>  {    this.alert.show('Hellow', 'Haaiiiii'); }, 1000);
   }
 
 }

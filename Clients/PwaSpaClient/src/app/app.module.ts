@@ -5,7 +5,7 @@ import { AppComponent } from './app.component';
 import { UiModule } from './ui/ui.module';
 import { AppRoutingModule } from './/app-routing.module';
 import { HomeModule } from './home/home.module';
-import { RouterModule } from '@angular/router';
+import { ComponentsModule } from './components/components.module';
 
 @NgModule({
   declarations: [
@@ -15,6 +15,7 @@ import { RouterModule } from '@angular/router';
     BrowserModule,
     UiModule,
     AppRoutingModule,
+    ComponentsModule,
     HomeModule,
   ],
   providers: [],

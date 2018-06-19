@@ -1,0 +1,10 @@
+.container-floating { 
+    position: fixed;
+    width: 100%;
+    left: 0;
+    top: 0;
+    padding-top: 75px;
+    .alert-floating {
+        width: 100%;
+    }
+}
