@@ -11,7 +11,7 @@ export class HomeComponent implements OnInit {
   constructor(private alert: AlertComponent) { }
 
   ngOnInit() {
-    setTimeout(() =>  {    this.alert.show('Hellow', 'Haaiiiii'); }, 1000);
+    setTimeout(() =>  {    this.alert.show('Hellow', 'Haaiiiii'); }, 2500);
   }
 
 }

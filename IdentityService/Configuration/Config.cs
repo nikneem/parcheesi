@@ -10,27 +10,13 @@ namespace HexMaster.Parcheesi.IdentityService.Configuration
         // ApiResources define the apis in your system
         public static IEnumerable<ApiResource> GetApis()
         {
-
-            //34c3c730-4472-46b9-915f-fa4c74473334
-            //5f6d879f-fa9a-495c-bb11-cf66fc6f4845
-            //e1c25d92-7315-4db0-a8e9-8767ae49bd1b
-            //b9a9ed3d-849d-414e-a565-7e54668d4ebc
-            //b5fafb8e-127c-4ed7-8e08-c7be4ae0b741
-            var apis = new Dictionary<string, Guid>
-            {
-                {"gateway-api", Guid.Parse("27a62c79-3c7c-412c-b342-432933ba1aae")},
-                {"content-service", Guid.Parse("1f026e5c-c9e2-4862-a783-156b58dc0c6c")},
-                {"chat-service", Guid.Parse("5a106cfd-d861-4498-9744-b4cb9032d9ee")},
-                {"network-service", Guid.Parse("e46d0760-c1b2-4453-967f-91687785c207")},
-                {"game-service", Guid.Parse("bf0f9a8c-4aee-4f03-a818-71a03c8b9bf7")}
-            };
             return new List<ApiResource>
             {
-                new ApiResource("gateway-api", "Gateway API") { ApiSecrets = { new Secret(apis["gateway-api"].ToString().Sha256()) } },
-                new ApiResource("content-service", "Content service") { ApiSecrets = { new Secret(apis["content-service"].ToString().Sha256()) } },
-                new ApiResource("chat-service", "Chat service") { ApiSecrets = { new Secret(apis["chat-service"].ToString().Sha256()) } },
-                new ApiResource("network-service", "Chat service") { ApiSecrets = { new Secret(apis["network-service"].ToString().Sha256()) } },
-                new ApiResource("game-service", "Game service") { ApiSecrets = { new Secret(apis["game-service"].ToString().Sha256()) } }
+                new ApiResource("gateway-api", "Gateway API"),
+                new ApiResource("network-service", "Network service"),
+                new ApiResource("content-service", "Content service"),
+                new ApiResource("chat-service", "Chat service"),
+                new ApiResource("game-service", "Game service")
             };
         }
 

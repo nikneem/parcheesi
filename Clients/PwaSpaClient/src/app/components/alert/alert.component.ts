@@ -14,30 +14,28 @@ import { timer, Subscription } from 'rxjs';
   styleUrls: ['./alert.component.scss'],
   animations: [
     trigger('alertState', [
-      state('inactive', style({
-        opacity: 0.5,
-        transform: 'scale(0.5)'
-      })),
-      state('active',   style({
+      state('visible', style({
         opacity: 1,
         transform: 'scale(1)'
       })),
-      transition('inactive => active', animate('100ms ease-in')),
-      transition('active => inactive', animate('100ms ease-out'))
+      state('invisible', style({
+        opacity: 0.5,
+        transform: 'scale(0.5)'
+      })),
+      transition('* => *', animate('500ms ease-in'))
     ])
   ]
 })
 export class AlertComponent implements OnInit {
 
   public allowClose: boolean;
-  public state: string;
   public title: string;
   public body: string;
   public timerHandle: number;
   private _subscription: Subscription;
+  public visibilityState = 'invisible';
 
   constructor() {
-    this.state = 'inactive';
    }
 
   ngOnInit() {
@@ -58,8 +56,8 @@ export class AlertComponent implements OnInit {
     self.toggleState();
   }
   toggleState() {
-    this.state = this.state === 'active' ? 'inactive' : 'active';
-    console.log(`Changed alert state to ${this.state}`);
+    this.visibilityState = this.visibilityState === 'visible' ? 'invisible' : 'visible';
+    console.log(`Changed alert state to ${this.visibilityState}`);
   }
 
   unsubscribe() {
