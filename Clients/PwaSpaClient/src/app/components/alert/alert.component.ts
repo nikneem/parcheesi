@@ -32,7 +32,6 @@ export class AlertComponent {
   public allowClose: boolean;
   public title: string;
   public body: string;
-  public title: string;
   public timerHandle: number;
   private _subscription: Subscription;
   public visibilityState = 'invisible';
