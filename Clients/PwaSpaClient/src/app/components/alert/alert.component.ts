@@ -14,27 +14,34 @@ import { timer, Subscription } from 'rxjs';
   templateUrl: './alert.component.html',
   styleUrls: ['./alert.component.scss'],
   animations: [
-    trigger('visibilityChanged', [
-      state('shown' , style({ opacity: 1 })),
-      state('hidden', style({ opacity: 0 })),
-      transition('* => *', animate('.5s'))
+    trigger('alertState', [
+      state('visible', style({
+        opacity: 1,
+        transform: 'scale(1)'
+      })),
+      state('invisible', style({
+        opacity: 0.5,
+        transform: 'scale(0.5)'
+      })),
+      transition('* => *', animate('500ms ease-in'))
     ])
   ]
 })
 export class AlertComponent {
 
   public allowClose: boolean;
+  public title: string;
   public body: string;
   public title: string;
   public timerHandle: number;
   private _subscription: Subscription;
+  public visibilityState = 'invisible';
 
 
   isVisible: boolean;
   @Input() visibility = 'shown';
 
   constructor() {
-    this.isVisible = false;
    }
 
 
@@ -56,10 +63,8 @@ export class AlertComponent {
   }
 
   toggleState() {
-    this.isVisible = !this.isVisible;
-
-    this.visibility = this.isVisible ? 'shown' : 'hidden';
-    console.log(`Changed alert state to ${this.isVisible}`);
+    this.visibilityState = this.visibilityState === 'visible' ? 'invisible' : 'visible';
+    console.log(`Changed alert state to ${this.visibilityState}`);
   }
 
   unsubscribe() {

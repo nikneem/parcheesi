@@ -101,7 +101,7 @@ namespace HexMaster.Parcheesi.NetworkService
             {
                 options.Authority = identityUrl;
                 options.RequireHttpsMetadata = false;
-                options.Audience = "network-api";
+                options.Audience = "network-service";
             });
         }
 
