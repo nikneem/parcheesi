@@ -1,4 +1,4 @@
-<div class="container-fluid container-floating" [@alertState]="state">
+<div class="container-fluid container-floating" [@visibilityChanged] *ngIf="isVisible">
   <div class="alert alert-danger alert-floating" role="alert">
     <button *ngIf="allowClose" type="button" class="close" data-dismiss="alert" aria-label="Close">
       <span aria-hidden="true">&times;</span>
