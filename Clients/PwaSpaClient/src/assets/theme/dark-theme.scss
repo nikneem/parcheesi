@@ -467,7 +467,6 @@ body {
   
   nav.navbar .dropdown-menu {
     min-width: 300px;
-    margin-top: 21px;
     left: auto;
     right: 0;
   }
@@ -571,12 +570,6 @@ body {
   }
   
   /* Navbar dropdown effect */
-  nav.navbar .dropdown .dropdown-menu {
-    -webkit-transform: translateY(50px);
-    transform: translateY(50px);
-    -webkit-transition: all 0.3s ease-in-out;
-    transition: all 0.3s ease-in-out;
-  }
   
   nav.navbar .dropdown .dropdown-menu.active {
     -webkit-transform: translateY(0);
@@ -651,11 +644,13 @@ body {
   *     SIDEBAR
   * ==========================================================
   */
+
+  app-navigation { background: #2d3035; border-right: solid 1px rgb(52, 55, 61);  }
+
   nav#sidebar {
     width: 280px;
     background: #2d3035;
     color: #6a6c70;
-    border-right: 1px solid #34373d;
     /* shrinked navbar */
   }
   
@@ -2050,7 +2045,6 @@ body {
   }
   
   .navbar-dark .navbar-toggler-icon {
-    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255, 255, 255, 0.5)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
   }
   
   .navbar-dark .navbar-text {
