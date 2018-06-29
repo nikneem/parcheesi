@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, OnChanges, Injectable } from '@angular/core';
 import {
   trigger,
   state,
@@ -8,6 +8,7 @@ import {
 } from '@angular/animations';
 import { timer, Subscription } from 'rxjs';
 
+@Injectable()
 @Component({
   selector: 'app-alert',
   templateUrl: './alert.component.html',
@@ -26,7 +27,7 @@ import { timer, Subscription } from 'rxjs';
     ])
   ]
 })
-export class AlertComponent implements OnInit {
+export class AlertComponent {
 
   public allowClose: boolean;
   public title: string;
@@ -35,11 +36,13 @@ export class AlertComponent implements OnInit {
   private _subscription: Subscription;
   public visibilityState = 'invisible';
 
+
+  isVisible: boolean;
+  @Input() visibility = 'shown';
+
   constructor() {
    }
 
-  ngOnInit() {
-  }
 
   public show(title: string, text: string, allowClose: boolean = true, duration: number = 5000) {
     console.log(`Showing alert for ${duration} milliseconds`);
@@ -48,13 +51,16 @@ export class AlertComponent implements OnInit {
     self.title = title;
     self.body = text;
     self.allowClose = allowClose;
+
+    this.toggleState();
+
     const tmr = timer(duration);
     this._subscription = tmr.subscribe(() => {
       self.toggleState();
       self.unsubscribe();
      });
-    self.toggleState();
   }
+
   toggleState() {
     this.visibilityState = this.visibilityState === 'visible' ? 'invisible' : 'visible';
     console.log(`Changed alert state to ${this.visibilityState}`);

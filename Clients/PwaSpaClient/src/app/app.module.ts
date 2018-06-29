@@ -6,6 +6,8 @@ import { UiModule } from './ui/ui.module';
 import { AppRoutingModule } from './/app-routing.module';
 import { HomeModule } from './home/home.module';
 import { ComponentsModule } from './components/components.module';
+import { FriendsModule } from './friends/friends.module';
+import { GamesModule } from './games/games.module';
 
 @NgModule({
   declarations: [
@@ -17,6 +19,8 @@ import { ComponentsModule } from './components/components.module';
     AppRoutingModule,
     ComponentsModule,
     HomeModule,
+    FriendsModule,
+    GamesModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
