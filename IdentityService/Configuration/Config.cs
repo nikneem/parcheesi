@@ -32,38 +32,38 @@ namespace HexMaster.Parcheesi.IdentityService.Configuration
 
 
         // client want to access resources (aka scopes)
-        public static IEnumerable<Client> GetClients(Dictionary<string,string> clientsUrl)
-        {
+        //public static IEnumerable<Client> GetClients(Dictionary<string,string> clientsUrl)
+        //{
 
 
-            return new List<Client>
-            {
-                // JavaScript Client
-                new Client
-                {
-                    ClientId = "spa-pwa",
-                    ClientName = "Parcheesi OpenId SPA Client",
-                    AllowedGrantTypes = GrantTypes.ClientCredentials,
-                    ClientSecrets = new List<Secret> { new Secret("superSecretPassword".Sha256()) },  
-                    AllowAccessTokensViaBrowser = true,
-                    RedirectUris =           { $"{clientsUrl["Spa"]}/" },
-                    RequireConsent = false,
-                    PostLogoutRedirectUris = { $"{clientsUrl["Spa"]}/" },
-                    AllowedCorsOrigins =     { $"{clientsUrl["Spa"]}" },
-                    AllowedScopes =
-                    {
-                        IdentityServerConstants.StandardScopes.OpenId,
-                        IdentityServerConstants.StandardScopes.Profile,
-                        "chat",
-                        "game",
-                        "network",
-                        "chat.signalrhub",
-                        "game.signalrhub",
-                        "network.signalrhub"
-                    }
-                }
-            };
-        }
+        //    return new List<Client>
+        //    {
+        //        // JavaScript Client
+        //        new Client
+        //        {
+        //            ClientId = "spa-pwa",
+        //            ClientName = "Parcheesi OpenId SPA Client",
+        //            AllowedGrantTypes = GrantTypes.ClientCredentials,
+        //            ClientSecrets = new List<Secret> { new Secret("superSecretPassword".Sha256()) },  
+        //            AllowAccessTokensViaBrowser = true,
+        //            RedirectUris =           { $"{clientsUrl["Spa"]}/" },
+        //            RequireConsent = false,
+        //            PostLogoutRedirectUris = { $"{clientsUrl["Spa"]}/" },
+        //            AllowedCorsOrigins =     { $"{clientsUrl["Spa"]}" },
+        //            AllowedScopes =
+        //            {
+        //                IdentityServerConstants.StandardScopes.OpenId,
+        //                IdentityServerConstants.StandardScopes.Profile,
+        //                "chat",
+        //                "game",
+        //                "network",
+        //                "chat.signalrhub",
+        //                "game.signalrhub",
+        //                "network.signalrhub"
+        //            }
+        //        }
+        //    };
+        //}
 
         public static IEnumerable<Client> GetClients()
         {
@@ -86,7 +86,7 @@ namespace HexMaster.Parcheesi.IdentityService.Configuration
                     RefreshTokenExpiration = TokenExpiration.Absolute,
 
                     AllowedGrantTypes = GrantTypes.ResourceOwnerPasswordAndClientCredentials,
-                    AllowedScopes = { "openid", "profile", "email", "api" },
+                    AllowedScopes = { "openid", "profile", "email", "gateway-api" },
                 },
 
                 new Client

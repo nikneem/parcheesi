@@ -1,7 +1,6 @@
-﻿using System.Linq;
-using System.Security.Claims;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using HexMaster.Parcheesi.GatewayApi.Base;
+using IdentityModel;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -18,9 +17,7 @@ namespace HexMaster.Parcheesi.GatewayApi.Controllers
         {
 
             var user = HttpContext.User;
-            var userId = user.FindFirst(ClaimTypes.Surname).Value;
-            var email = user.FindFirst(ClaimTypes.Name).Value;
-            var displayName = user.Claims.FirstOrDefault(c => c.Type == "name")?.Value;
+            var userId = user.FindFirst(JwtClaimTypes.Subject).Value;
 //            return new[] { $"Service A has recognized you as {displayName} with email {email} and identity {userId}." };
 
 

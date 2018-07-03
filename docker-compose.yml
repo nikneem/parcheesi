@@ -9,14 +9,6 @@ services:
     depends_on:
      - gatewayapi
 
-  pwaspaclient:
-    image: parcheesi/pwaspaclient
-    build:
-      context: .
-      dockerfile: Clients/PwaSpaClient/Dockerfile
-    depends_on:
-     - gatewayapi
-
   gatewayapi:
     image: parcheesi/gatewayapi
     build:
