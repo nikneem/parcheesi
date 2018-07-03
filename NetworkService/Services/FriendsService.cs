@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using HexMaster.Parcheesi.Common.Contracts;
 using HexMaster.Parcheesi.Common.Infrastructure;
 using HexMaster.Parcheesi.NetworkService.Contracts.Repositories;
 using HexMaster.Parcheesi.NetworkService.Contracts.Services;
@@ -43,6 +42,10 @@ namespace HexMaster.Parcheesi.NetworkService.Services
             };
         }
 
+        public async Task<FriendDto> Update(FriendInvitationDto dto)
+        {
+            throw new NotImplementedException();
+        }
 
 
         public FriendsService(IFriendsRepository friendsRepository)

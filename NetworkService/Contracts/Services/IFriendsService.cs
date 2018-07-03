@@ -10,6 +10,5 @@ namespace HexMaster.Parcheesi.NetworkService.Contracts.Services
         Task<ICollection<FriendDto>> Get(string q, int page =0, int pageSize = Constants.default_page_size);
         Task<FriendDto> Create(FriendInvitationDto dto);
         Task<FriendDto> Update(FriendInvitationDto dto);
-        Task<FriendDto> Create(FriendInvitationDto dto);
     }
 }
