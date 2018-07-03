@@ -1,9 +1,9 @@
-FROM microsoft/dotnet:2.1-aspnetcore-runtime AS base
+FROM microsoft/dotnet:2.1.1-aspnetcore-runtime-stretch-slim AS base
 WORKDIR /app
 EXPOSE 7902
 EXPOSE 44391
 
-FROM microsoft/dotnet:2.1-sdk AS build
+FROM microsoft/dotnet:2.1.1-aspnetcore-runtime-stretch-slim AS build
 WORKDIR /src
 COPY IdentityService/IdentityService.csproj IdentityService/
 RUN dotnet restore IdentityService/IdentityService.csproj

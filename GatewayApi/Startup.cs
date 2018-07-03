@@ -39,7 +39,7 @@ namespace HexMaster.Parcheesi.GatewayApi
 
             app.UseAuthentication();
 
-            app.UseHttpsRedirection();
+            //app.UseHttpsRedirection();
             app.UseMvc();
         }
 

@@ -1,9 +1,9 @@
-FROM microsoft/dotnet:2.1-aspnetcore-runtime AS base
+FROM microsoft/dotnet:2.1.1-aspnetcore-runtime-stretch-slim AS base
 WORKDIR /app
 EXPOSE 64918
 EXPOSE 44341
 
-FROM microsoft/dotnet:2.1-sdk AS build
+FROM microsoft/dotnet:2.1.1-aspnetcore-runtime-stretch-slim AS build
 WORKDIR /src
 COPY GameService/GameService.csproj GameService/
 RUN dotnet restore GameService/GameService.csproj

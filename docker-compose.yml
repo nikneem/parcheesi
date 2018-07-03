@@ -1,15 +1,21 @@
 version: '3.4'
 
 services:
+  webclient:
+    image: parcheesi/pwaspaclient
+    build:
+      context: .
+      dockerfile: WebClient/Dockerfile
+    depends_on:
+     - gatewayapi
 
-#  pwaspaclient:
-#    image: parcheesi/pwaspaclient
-#    build:
-#      context: .
-#      dockerfile: Clients/PwaSpaClient/Dockerfile
-#    depends_on:
-#      - gatewayapi
-
+  pwaspaclient:
+    image: parcheesi/pwaspaclient
+    build:
+      context: .
+      dockerfile: Clients/PwaSpaClient/Dockerfile
+    depends_on:
+     - gatewayapi
 
   gatewayapi:
     image: parcheesi/gatewayapi
@@ -22,7 +28,6 @@ services:
       - gameservice
       - contentservice
       - chatservice
-
 
   identityservice:
     image: parcheesi/identityservice
@@ -74,5 +79,4 @@ services:
 
   rabbitmq:
     image: rabbitmq:3
-
 
