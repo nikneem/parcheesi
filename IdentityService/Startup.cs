@@ -2,6 +2,8 @@
 using HexMaster.Parcheesi.Common.Configuration;
 using HexMaster.Parcheesi.IdentityService.Certificates;
 using HexMaster.Parcheesi.IdentityService.Configuration;
+using HexMaster.Parcheesi.IdentityService.Contracts;
+using HexMaster.Parcheesi.IdentityService.Contracts.Events;
 using HexMaster.Parcheesi.IdentityService.Contracts.Repositories;
 using HexMaster.Parcheesi.IdentityService.Data;
 using HexMaster.Parcheesi.IdentityService.Services;
@@ -31,6 +33,8 @@ namespace HexMaster.Parcheesi.IdentityService
 
             services.AddTransient<IResourceOwnerPasswordValidator, PasswordValidationService>();
             services.AddTransient<IProfileService, UserProfileService>();
+            services.AddScoped<IUserService, UserProfileService>();
+            services.AddScoped<IIdentityIntegrationEventService, IdentityIntegrationEventService>();
 
             ConfigureIdentityServices(services);
 

@@ -8,5 +8,6 @@ namespace HexMaster.Parcheesi.IdentityService.Contracts.Repositories
     {
         Task<User> Find(string username, string password);
         Task<User> Find(Guid userId);
+        Task<bool> Insert(User domainModel);
     }
 }

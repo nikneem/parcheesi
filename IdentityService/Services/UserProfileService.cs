@@ -1,22 +1,29 @@
 ﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
+using HexMaster.Parcheesi.Common.DataTransferObjects.Authentication;
+using HexMaster.Parcheesi.IdentityService.Contracts;
+using HexMaster.Parcheesi.IdentityService.Contracts.Events;
 using HexMaster.Parcheesi.IdentityService.Contracts.Repositories;
+using HexMaster.Parcheesi.IdentityService.DomainModels;
+using HexMaster.Parcheesi.IdentityService.IntegrationEvents.Events;
 using IdentityModel;
 using IdentityServer4.Models;
 using IdentityServer4.Services;
 
 namespace HexMaster.Parcheesi.IdentityService.Services
 {
-    public class UserProfileService : IProfileService
+    public class UserProfileService : IProfileService, IUserService
     {
 
 
         private readonly IUsersRepository _userRepository;
+        private readonly IIdentityIntegrationEventService _events;
 
-        public UserProfileService(IUsersRepository userRepository)
+        public UserProfileService(IUsersRepository userRepository, IIdentityIntegrationEventService events)
         {
             _userRepository = userRepository;
+            _events = events;
         }
 
         public async Task GetProfileDataAsync(ProfileDataRequestContext context)
@@ -88,6 +95,23 @@ namespace HexMaster.Parcheesi.IdentityService.Services
             {
                 //handle error logging
             }
+        }
+
+        public async Task<RegistrationResponseDto> Register(RegistrationRequestDto dto)
+        {
+            var domainModel = User.Create(dto.Email, dto.Username, dto.Password);
+
+            var storageResult = await _userRepository.Insert(domainModel);
+            if (storageResult)
+            {
+                var userCreatedEvent = new UserRegistrationSucceededIntegrationEvent(domainModel.Id, domainModel.DisplayName);
+                _events.PublishThroughEventBusAsync(userCreatedEvent);
+            }
+
+            return new RegistrationResponseDto
+            {
+                Id = domainModel.Id
+            };
         }
     }
 }

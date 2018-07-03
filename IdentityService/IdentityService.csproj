@@ -31,6 +31,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Common\Common.csproj" />
+    <ProjectReference Include="..\Helpers\EventBus\EventBus.csproj" />
   </ItemGroup>
 
 </Project>

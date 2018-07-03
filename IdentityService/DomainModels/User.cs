@@ -1,5 +1,6 @@
 ﻿using System;
 using HexMaster.Parcheesi.Common.Base;
+using HexMaster.Parcheesi.Common.Infrastructure.Enums;
 
 namespace HexMaster.Parcheesi.IdentityService.DomainModels
 {
@@ -28,6 +29,21 @@ namespace HexMaster.Parcheesi.IdentityService.DomainModels
             VerificationExpiresOn = verificationExpiresOn;
             LastActivityOn = lastActivityOn;
             Credentials = credentials;
+        }
+        private User(string email, string username, string password)
+            : base(Guid.NewGuid(),  TrackingState.Added)
+        {
+            DisplayName = username;
+            Email = email;
+            IsVerified = false;
+            VerificationExpiresOn = DateTime.UtcNow.AddDays(2);
+            LastActivityOn = DateTime.UtcNow;
+            Credentials = Credentials.Create(username, password);
+        }
+
+        public static User Create(string email, string username, string password)
+        {
+            return new User(email, username, password);
         }
     }
 }

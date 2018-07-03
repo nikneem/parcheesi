@@ -1,5 +1,7 @@
 ﻿using System;
+using HexMaster.Parcheesi.Common;
 using HexMaster.Parcheesi.Common.Base;
+using HexMaster.Parcheesi.Common.Infrastructure.Enums;
 using HexMaster.Parcheesi.Common.ValueObjects;
 
 namespace HexMaster.Parcheesi.IdentityService.DomainModels
@@ -17,6 +19,18 @@ namespace HexMaster.Parcheesi.IdentityService.DomainModels
         {
             Username = username;
             Password = new Password(password, secret);
+        }
+        private Credentials( 
+            string username, 
+            string password) : base(Guid.NewGuid(), TrackingState.Added )
+        {
+            Username = username;
+            Password = new Password(password, Randomizer.GenerateSecret());
+        }
+
+        public static Credentials Create(string username, string password)
+        {
+            return new Credentials(username, password);
         }
     }
 }

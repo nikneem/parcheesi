@@ -14,7 +14,7 @@ namespace HexMaster.Parcheesi.Common.Base
         {
         }
 
-        protected DomainModelBase(TId id)
+        protected DomainModelBase(TId id, TrackingState state = TrackingState.Unchanged): base(state)
         {
             Id = id;
         }
