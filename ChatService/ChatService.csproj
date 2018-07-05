@@ -17,4 +17,19 @@
     <PackageReference Include="Microsoft.AspNetCore.App" Version="2.1.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Common\Common.csproj" />
+    <ProjectReference Include="..\Helpers\EventBusRabbitMq\EventBusRabbitMq.csproj" />
+    <ProjectReference Include="..\Helpers\EventBusServiceBus\EventBusServiceBus.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Microsoft.Azure.ServiceBus">
+      <HintPath>C:\Users\ekeilholz.BEXTER\.nuget\packages\microsoft.azure.servicebus\3.0.2\lib\netstandard2.0\Microsoft.Azure.ServiceBus.dll</HintPath>
+    </Reference>
+    <Reference Include="RabbitMQ.Client">
+      <HintPath>C:\Users\ekeilholz.BEXTER\.nuget\packages\rabbitmq.client\5.1.0\lib\netstandard1.5\RabbitMQ.Client.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
 </Project>

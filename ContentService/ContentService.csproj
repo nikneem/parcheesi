@@ -17,4 +17,10 @@
     <PackageReference Include="Microsoft.AspNetCore.App" Version="2.1.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Common\Common.csproj" />
+    <ProjectReference Include="..\Helpers\EventBusRabbitMq\EventBusRabbitMq.csproj" />
+    <ProjectReference Include="..\Helpers\EventBusServiceBus\EventBusServiceBus.csproj" />
+  </ItemGroup>
+
 </Project>
