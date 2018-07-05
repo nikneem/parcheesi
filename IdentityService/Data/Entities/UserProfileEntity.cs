@@ -12,6 +12,7 @@ namespace HexMaster.Parcheesi.IdentityService.Data.Entities
         public string EmailAddress { get; set; }
         public List<string> Scopes { get; set; }
         public bool IsVerified { get; set; }
+         
         public DateTime VerificationExpiresOn { get; set; }
         public DateTime LastActivityOn { get; set; }
     }

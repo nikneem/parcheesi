@@ -69,5 +69,33 @@ namespace HexMaster.Parcheesi.IdentityService.Data
                     userEntity.LastActivityOn
                 );
         }
+
+        public async Task<bool> Insert(User domainModel)
+        {
+            var entity = new UserProfileEntity
+            {
+                Id = domainModel.Id,
+                DisplayName = domainModel.DisplayName,
+                EmailAddress = domainModel.Email,
+                IsVerified = domainModel.IsVerified,
+                LastActivityOn = domainModel.LastActivityOn,
+                VerificationExpiresOn = domainModel.VerificationExpiresOn
+            };
+            await _usersCollection.InsertOneAsync(entity);
+            if (domainModel.Credentials != null)
+            {
+                var credentialEntity = new CredentialEntity
+                {
+                    Id = domainModel.Credentials.Id,
+                    UserId = domainModel.Id,
+                    Secret = domainModel.Credentials.Password.Secret,
+                    Password = domainModel.Credentials.Password.Passwd,
+                    Username = domainModel.Credentials.Username
+                };
+                await _credentialsCollection.InsertOneAsync(credentialEntity);
+            }
+
+            return true;
+        }
     }
 }
