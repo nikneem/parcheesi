@@ -23,6 +23,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Autofac" Version="4.8.1" />
+    <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="4.2.2" />
     <PackageReference Include="IdentityServer4" Version="2.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.App" Version="2.1.1" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.1" />
@@ -34,15 +36,6 @@
     <ProjectReference Include="..\Helpers\EventBusRabbitMq\EventBusRabbitMq.csproj" />
     <ProjectReference Include="..\Helpers\EventBusServiceBus\EventBusServiceBus.csproj" />
     <ProjectReference Include="..\Helpers\EventBus\EventBus.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Reference Include="Autofac">
-      <HintPath>C:\Users\ekeilholz.BEXTER\.nuget\packages\autofac\4.8.1\lib\netstandard1.1\Autofac.dll</HintPath>
-    </Reference>
-    <Reference Include="Autofac.Extensions.DependencyInjection">
-      <HintPath>C:\Users\ekeilholz.BEXTER\.nuget\packages\autofac.extensions.dependencyinjection\4.2.2\lib\netstandard1.1\Autofac.Extensions.DependencyInjection.dll</HintPath>
-    </Reference>
   </ItemGroup>
 
 </Project>

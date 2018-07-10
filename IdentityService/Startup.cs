@@ -108,6 +108,7 @@ namespace HexMaster.Parcheesi.IdentityService
         {
             var signCertificate = Certificate.Get();
             services.AddIdentityServer(options => { options.IssuerUri = "http://identityservice"; })
+                .AddInMemoryPersistedGrants()
                 .AddSigningCredential(signCertificate)
                 .AddInMemoryIdentityResources(Config.GetResources())
                 .AddInMemoryApiResources(Config.GetApis())

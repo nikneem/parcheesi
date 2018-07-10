@@ -85,133 +85,133 @@ namespace HexMaster.Parcheesi.IdentityService.Configuration
                     RefreshTokenUsage = TokenUsage.OneTimeOnly,
                     RefreshTokenExpiration = TokenExpiration.Absolute,
 
-                    AllowedGrantTypes = GrantTypes.ResourceOwnerPasswordAndClientCredentials,
+                    AllowedGrantTypes = GrantTypes.CodeAndClientCredentials,
                     AllowedScopes = { "openid", "profile", "email", "gateway-api" },
                 },
 
-                new Client
-                {
-                    ClientId = "native.hybrid",
-                    ClientName = "Native Client (Hybrid with PKCE)",
+                //new Client
+                //{
+                //    ClientId = "native.hybrid",
+                //    ClientName = "Native Client (Hybrid with PKCE)",
 
-                    RedirectUris = { "https://notused" },
-                    PostLogoutRedirectUris = { "https://notused" },
+                //    RedirectUris = { "https://notused" },
+                //    PostLogoutRedirectUris = { "https://notused" },
 
-                    RequireClientSecret = false,
+                //    RequireClientSecret = false,
 
-                    AllowedGrantTypes = GrantTypes.Hybrid,
-                    RequirePkce = true,
-                    AllowedScopes = { "openid", "profile", "email", "api" },
+                //    AllowedGrantTypes = GrantTypes.Hybrid,
+                //    RequirePkce = true,
+                //    AllowedScopes = { "openid", "profile", "email", "api" },
 
-                    AllowOfflineAccess = true,
-                    RefreshTokenUsage = TokenUsage.ReUse
-                },
-                new Client
-                {
-                    ClientId = "server.hybrid",
-                    ClientName = "Server-based Client (Hybrid)",
+                //    AllowOfflineAccess = true,
+                //    RefreshTokenUsage = TokenUsage.ReUse
+                //},
+                //new Client
+                //{
+                //    ClientId = "server.hybrid",
+                //    ClientName = "Server-based Client (Hybrid)",
 
-                    RedirectUris = { "https://notused" },
-                    PostLogoutRedirectUris = { "https://notused" },
+                //    RedirectUris = { "https://notused" },
+                //    PostLogoutRedirectUris = { "https://notused" },
 
-                    ClientSecrets = { new Secret("secret".Sha256()) },
+                //    ClientSecrets = { new Secret("secret".Sha256()) },
 
-                    AllowedGrantTypes = GrantTypes.Hybrid,
-                    AllowedScopes = { "openid", "profile", "email", "api" },
+                //    AllowedGrantTypes = GrantTypes.Hybrid,
+                //    AllowedScopes = { "openid", "profile", "email", "api" },
 
-                    AllowOfflineAccess = true,
-                    RefreshTokenUsage = TokenUsage.ReUse
-                },
-                new Client
-                {
-                    ClientId = "native.code",
-                    ClientName = "Native Client (Code with PKCE)",
+                //    AllowOfflineAccess = true,
+                //    RefreshTokenUsage = TokenUsage.ReUse
+                //},
+                //new Client
+                //{
+                //    ClientId = "native.code",
+                //    ClientName = "Native Client (Code with PKCE)",
 
-                    RedirectUris = { "https://notused" },
-                    PostLogoutRedirectUris = { "https://notused" },
+                //    RedirectUris = { "https://notused" },
+                //    PostLogoutRedirectUris = { "https://notused" },
 
-                    RequireClientSecret = false,
+                //    RequireClientSecret = false,
 
-                    AllowedGrantTypes = GrantTypes.Code,
-                    RequirePkce = true,
-                    AllowedScopes = { "openid", "profile", "email", "api" },
+                //    AllowedGrantTypes = GrantTypes.Code,
+                //    RequirePkce = true,
+                //    AllowedScopes = { "openid", "profile", "email", "api" },
 
-                    AllowOfflineAccess = true,
-                    RefreshTokenUsage = TokenUsage.ReUse
-                },
-                new Client
-                {
-                    ClientId = "server.code",
-                    ClientName = "Service Client (Code)",
+                //    AllowOfflineAccess = true,
+                //    RefreshTokenUsage = TokenUsage.ReUse
+                //},
+                //new Client
+                //{
+                //    ClientId = "server.code",
+                //    ClientName = "Service Client (Code)",
 
-                    RedirectUris = { "https://notused" },
-                    PostLogoutRedirectUris = { "https://notused" },
+                //    RedirectUris = { "https://notused" },
+                //    PostLogoutRedirectUris = { "https://notused" },
 
-                    ClientSecrets = { new Secret("secret".Sha256()) },
+                //    ClientSecrets = { new Secret("secret".Sha256()) },
 
-                    AllowedGrantTypes = GrantTypes.Code,
-                    AllowedScopes = { "openid", "profile", "email", "api" },
+                //    AllowedGrantTypes = GrantTypes.Code,
+                //    AllowedScopes = { "openid", "profile", "email", "api" },
 
-                    AllowOfflineAccess = true,
-                    RefreshTokenUsage = TokenUsage.ReUse
-                },
+                //    AllowOfflineAccess = true,
+                //    RefreshTokenUsage = TokenUsage.ReUse
+                //},
 
-                // server to server
-                new Client
-                {
-                    ClientId = "client",
-                    ClientSecrets = { new Secret("secret".Sha256()) },
+                //// server to server
+                //new Client
+                //{
+                //    ClientId = "client",
+                //    ClientSecrets = { new Secret("secret".Sha256()) },
 
-                    AllowedGrantTypes = GrantTypes.ClientCredentials,
-                    AllowedScopes = { "api" },
-                },
+                //    AllowedGrantTypes = GrantTypes.ClientCredentials,
+                //    AllowedScopes = { "api" },
+                //},
 
-                // implicit (e.g. SPA or OIDC authentication)
-                new Client
-                {
-                    ClientId = "implicit",
-                    ClientName = "Implicit Client",
-                    AllowAccessTokensViaBrowser = true,
+                //// implicit (e.g. SPA or OIDC authentication)
+                //new Client
+                //{
+                //    ClientId = "implicit",
+                //    ClientName = "Implicit Client",
+                //    AllowAccessTokensViaBrowser = true,
 
-                    RedirectUris = { "https://notused" },
-                    PostLogoutRedirectUris = { "https://notused" },
-                    FrontChannelLogoutUri = "http://localhost:5000/signout-idsrv", // for testing identityserver on localhost
+                //    RedirectUris = { "https://notused" },
+                //    PostLogoutRedirectUris = { "https://notused" },
+                //    FrontChannelLogoutUri = "http://localhost:5000/signout-idsrv", // for testing identityserver on localhost
 
-                    AllowedGrantTypes = GrantTypes.Implicit,
-                    AllowedScopes = { "openid", "profile", "email", "api" },
-                },
+                //    AllowedGrantTypes = GrantTypes.Implicit,
+                //    AllowedScopes = { "openid", "profile", "email", "api" },
+                //},
 
-                // implicit using reference tokens (e.g. SPA or OIDC authentication)
-                new Client
-                {
-                    ClientId = "implicit.reference",
-                    ClientName = "Implicit Client using reference tokens",
-                    AllowAccessTokensViaBrowser = true,
+                //// implicit using reference tokens (e.g. SPA or OIDC authentication)
+                //new Client
+                //{
+                //    ClientId = "implicit.reference",
+                //    ClientName = "Implicit Client using reference tokens",
+                //    AllowAccessTokensViaBrowser = true,
 
-                    AccessTokenType = AccessTokenType.Reference,
+                //    AccessTokenType = AccessTokenType.Reference,
 
-                    RedirectUris = { "https://notused" },
-                    PostLogoutRedirectUris = { "https://notused" },
+                //    RedirectUris = { "https://notused" },
+                //    PostLogoutRedirectUris = { "https://notused" },
 
-                    AllowedGrantTypes = GrantTypes.Implicit,
-                    AllowedScopes = { "openid", "profile", "email", "api" },
-                },
+                //    AllowedGrantTypes = GrantTypes.Implicit,
+                //    AllowedScopes = { "openid", "profile", "email", "api" },
+                //},
 
-                // implicit using reference tokens (e.g. SPA or OIDC authentication)
-                new Client
-                {
-                    ClientId = "implicit.shortlived",
-                    ClientName = "Implicit Client using short-lived tokens",
-                    AllowAccessTokensViaBrowser = true,
+                //// implicit using reference tokens (e.g. SPA or OIDC authentication)
+                //new Client
+                //{
+                //    ClientId = "implicit.shortlived",
+                //    ClientName = "Implicit Client using short-lived tokens",
+                //    AllowAccessTokensViaBrowser = true,
 
-                    AccessTokenLifetime = 70,
+                //    AccessTokenLifetime = 70,
 
-                    RedirectUris = { "https://notused" },
-                    PostLogoutRedirectUris = { "https://notused" },
+                //    RedirectUris = { "https://notused" },
+                //    PostLogoutRedirectUris = { "https://notused" },
 
-                    AllowedGrantTypes = GrantTypes.Implicit,
-                    AllowedScopes = { "openid", "profile", "email", "api" },
-                }
+                //    AllowedGrantTypes = GrantTypes.Implicit,
+                //    AllowedScopes = { "openid", "profile", "email", "api" },
+                //}
             };
         }
     }
